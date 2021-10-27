@@ -79,25 +79,27 @@ public class Main {
         int creditos= 0;
         String  cred="";
         Scanner scanner01 = new Scanner(System.in);
-        boolean verificacionNom = false;
-        boolean verificacionCred = false; 
-        try{
-            while (!verificacionNom) {
+        boolean verificacionNombre = false;
+boolean verificacionCreditos = false;
+        try {
+            while (!verificacionNombre) {
             System.out.print("Digite el nombre del curso:\n");
             nombre = scanner01.nextLine();
             if (nombre != "") {
-                verificacionNom = true;
+                verificacionNombre = true;
             } else {
                 System.out.println("Nombre no puede estar vacio");
             }
             }
-            while (!verificacionCred) {
+            while (!verificacionCreditos) {
             System.out.print("Digite la cantidad de creditos:\n");
             cred = scanner01.nextLine();
-            if (nombre != "") {
-                verificacionCred = true;
+             if (nombre != "") {
+                    if (nombre != "") {
+                verificacionCreditos = true;
             } else {
                 System.out.println("Campo creditos no puede estar vacio");
+            }
             }
             }
             Curso newCurso = new Curso();
@@ -105,21 +107,21 @@ public class Main {
             newCurso.setCreditos(Integer.parseInt(cred));
             MantenimientoCursos mantCurso = new MantenimientoCursos();
             mantCurso.agregarCurso(curso, newCurso);
-        }catch (NumberFormatException e){
-        System.out.println(e);
+        } catch (NumberFormatException e) {
+            System.out.println("Formato incorrecto, intente de nuevo\n");
         }
     }
 
     public void consultarCurso() {
         String nombreCurso="";
         Scanner scanner01 = new Scanner(System.in);
-        boolean verificacionCampos = false;
+        boolean verificacionNombre = false;
         try {
-            while (!verificacionCampos){
+            while (!verificacionNombre){
             System.out.print("Digite el nombre del curso a consultar:\n");
             nombreCurso = scanner01.nextLine();
                 if (nombreCurso != "") {
-                verificacionCampos = true;
+                verificacionNombre = true;
             } else {
                 System.out.println("Nombre no puede estar vacio");
             }
@@ -139,31 +141,33 @@ public class Main {
         String nombreCurso="";
         String cred="";
         String nombreNuevo="";
-        boolean verificacionCampos = false;
+        boolean verificacionNombre = false;
+boolean verificacionNuevoNombre = false;
+boolean verificacionCreditos = false;
         try {
-            while (!verificacionCampos){
+            while (!verificacionNombre){
             System.out.print("Digite el nombre del curso a modificar:\n");
             nombreCurso = scanner03.nextLine();
                 if (nombreCurso != "") {
-                verificacionCampos = true;
+                verificacionNombre = true;
             } else {
                 System.out.println("Nombre no puede estar vacio");
             }
             }
-            while (!verificacionCampos){
+            while (!verificacionNuevoNombre){
             System.out.print("Digite el nuevo nombre del curso:\n");
             nombreNuevo = scanner03.nextLine();
              if (nombreNuevo != "") {
-                verificacionCampos = true;
+                verificacionNuevoNombre = true;
             } else {
                 System.out.println("Nombre no puede estar vacio");
             }
             }
-            while (!verificacionCampos){
+            while (!verificacionCreditos){
             System.out.print("Digite la cantidad de creditos a modificar:\n");
             cred = scanner03.nextLine();
              if (cred != "") {
-                verificacionCampos = true;
+                verificacionCreditos = true;
             } else {
                 System.out.println("Nombre no puede estar vacio");
             }
@@ -181,13 +185,14 @@ public class Main {
     public void eliminarCurso() {
         Scanner scanner02 = new Scanner(System.in);
         String nombreCurso="";
-        boolean verificacionCampos = false;
+        boolean verificacionNombre = false;
+
         try {
-            while (!verificacionCampos){
+            while (!verificacionNombre){
             System.out.print("Digite el nombre del curso que desea eliminar:\n");
             nombreCurso = scanner02.nextLine();
                 if (nombreCurso != "") {
-                verificacionCampos = true;
+                verificacionNombre = true;
             } else {
                 System.out.println("Nombre no puede estar vacio");
             }
@@ -201,6 +206,7 @@ public class Main {
             System.out.println("Formato incorrecto, intente de nuevo\n");
         }
     }
+    
 //MANTENIMIENTO DE CARRERAS
     public void agregarCarrera() {
         String nombre="";
