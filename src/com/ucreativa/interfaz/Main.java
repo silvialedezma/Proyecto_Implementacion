@@ -76,31 +76,31 @@ public class Main {
 //MANTENIMIENTO DE CURSOS
     public void agregarCurso() {
         String nombre = "";
-        int creditos= 0;
-        String  cred="";
+        int creditos = 0;
+        String cred = "";
         Scanner scanner01 = new Scanner(System.in);
         boolean verificacionNombre = false;
-boolean verificacionCreditos = false;
+        boolean verificacionCreditos = false;
         try {
             while (!verificacionNombre) {
-            System.out.print("Digite el nombre del curso:\n");
-            nombre = scanner01.nextLine();
-            if (nombre != "") {
-                verificacionNombre = true;
-            } else {
-                System.out.println("Nombre no puede estar vacio");
-            }
+                System.out.print("Digite el nombre del curso:\n");
+                nombre = scanner01.nextLine();
+                if (nombre != "") {
+                    verificacionNombre = true;
+                } else {
+                    System.out.println("Nombre no puede estar vacio");
+                }
             }
             while (!verificacionCreditos) {
-            System.out.print("Digite la cantidad de creditos:\n");
-            cred = scanner01.nextLine();
-             if (nombre != "") {
+                System.out.print("Digite la cantidad de creditos:\n");
+                cred = scanner01.nextLine();
+                if (nombre != "") {
                     if (nombre != "") {
-                verificacionCreditos = true;
-            } else {
-                System.out.println("Campo creditos no puede estar vacio");
-            }
-            }
+                        verificacionCreditos = true;
+                    } else {
+                        System.out.println("Campo creditos no puede estar vacio");
+                    }
+                }
             }
             Curso newCurso = new Curso();
             newCurso.setNombre(nombre.toLowerCase());
@@ -198,7 +198,7 @@ boolean verificacionCreditos = false;
             }
             }
             Curso newCurso = new Curso();
-            newCurso.setNombre(nombreCurso.toLowerCase());
+            newCurso.setNombre(nombreCurso.toLowerCase());           
             MantenimientoCursos mantCurso = new MantenimientoCursos();
             mantCurso.eliminarCurso(curso, newCurso);
             scanner02.nextLine();
@@ -345,7 +345,7 @@ boolean verificacionCreditos = false;
             System.out.print("Digite la fecha de nacimiento del estudiante (ej 1953-01-30):\n");
             String fecha = scanner01.nextLine();
             try {
-                LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
+                fechaNacimiento=LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
                 verificacionFecha = true;
             } catch (DateTimeParseException e) {
                 System.out.println("Fecha con mal formato, por favor digitela de nuevo\n");
@@ -430,7 +430,7 @@ boolean verificacionCreditos = false;
                 System.out.print("Digite la nueva fecha de nacimiento del profesor (ej 1953-01-30):\n");
                 String fecha = scanner01.nextLine();
                 try {
-                    LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
+                    fechaNacimiento=LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
                     verificacionFecha = true;
                 } catch (DateTimeParseException e) {
                     System.out.println("Fecha con mal formato, por favor digitela de nuevo\n");
@@ -502,7 +502,7 @@ boolean verificacionCreditos = false;
             System.out.print("Digite la nueva fecha de nacimiento del profesor (ej 1953-01-30):\n");
             String fecha = scanner01.nextLine();
             try {
-                LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
+                fechaNacimiento=LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
                 verificacionFecha = true;
             } catch (DateTimeParseException e) {
                 System.out.println("Fecha con mal formato, por favor digitela de nuevo\n");
@@ -576,7 +576,7 @@ boolean verificacionCreditos = false;
                 System.out.print("Digite la nueva fecha de nacimiento del profesor (ej 1953-01-30):\n");
                 String fecha = scanner01.nextLine();
                 try {
-                    LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
+                    fechaNacimiento=LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
                     verificacionFecha = true;
                 } catch (DateTimeParseException e) {
                     System.out.println("Fecha con mal formato, por favor digitela de nuevo\n");
@@ -624,13 +624,13 @@ boolean verificacionCreditos = false;
     public void asignarQuitarCarreraEstudiante(boolean quitar) {
         try {
             Carrera datoCarrera = buscaCarrera();
-            if (datoCarrera != null)
+            if (datoCarrera == null)
             {
                 // El usuario aborto la asignacion
                 return;
             }
             Estudiante estudiante = buscaEstudiante();
-            if (estudiante != null) {
+            if (estudiante == null) {
                 // El usuario aborto la asignacion
                 return;
             }
@@ -660,7 +660,7 @@ boolean verificacionCreditos = false;
                     return null;
                 }
                 dato = MantenimientoCarrera.buscarDato(carrera, nombre);
-                if (dato != null) {
+                if (dato == null) {
                     System.out.print("El nombre no existe en la lista, por favor ingrese uno valido\n");
                 } else {
                     verificacion = true;
@@ -682,7 +682,7 @@ boolean verificacionCreditos = false;
                 return null;
             }
             estudiante=(Estudiante)Mantenimientos.buscarDato(estudiantes, identificacion);
-            if (estudiante!=null) {
+            if (estudiante==null) {
                 System.out.print("El id no existe en la lista, por favor ingrese uno valido\n");
             } else {
                 verificacion = true;
@@ -697,13 +697,13 @@ boolean verificacionCreditos = false;
     public void asignarQuitarCursoEstudiante(boolean quitar) {
         try {
             Curso datoCurso = buscaCurso();
-            if (datoCurso != null)
+            if (datoCurso == null)
             {
                 // El usuario aborto la asignacion
                 return;
             }
             Estudiante estudiante = buscaEstudiante();
-            if (estudiante != null) {
+            if (estudiante == null) {
                 // El usuario aborto la asignacion
                 return;
             }
@@ -732,8 +732,8 @@ boolean verificacionCreditos = false;
                 if (nombre.equals("")) {
                     return null;
                 }
-                dato = MantenimientoCursos.buscarDato(curso, nombre);
-                if (dato != null) {
+                dato = MantenimientoCursos.buscarDato(curso, nombre.toLowerCase());
+                if (dato == null) {
                     System.out.print("El nombre no existe en la lista, por favor ingrese uno valido\n");
                 } else {
                     verificacion = true;
@@ -756,7 +756,7 @@ boolean verificacionCreditos = false;
                 return null;
             }
             profesor=(Profesor)Mantenimientos.buscarDato(profesores, identificacion);
-            if (profesor!=null) {
+            if (profesor==null) {
                 System.out.print("El id no existe en la lista, por favor ingrese uno valido\n");
             } else {
                 verificacion = true;
@@ -768,13 +768,13 @@ boolean verificacionCreditos = false;
     public void asignarQuitarCarreraProfesor(boolean quitar) {
         try {
             Carrera datoCarrera = buscaCarrera();
-            if (datoCarrera != null)
+            if (datoCarrera == null)
             {
                 // El usuario aborto la asignacion
                 return;
             }
             Profesor profesor = buscaProfesor();
-            if (profesor != null) {
+            if (profesor == null) {
                 // El usuario aborto la asignacion
                 return;
             }
@@ -792,12 +792,12 @@ boolean verificacionCreditos = false;
     public void asignarQuitarProfesorDirectorCarrera(boolean quitar){
         try{
             Carrera datoCarrera=buscaCarrera();
-            if (datoCarrera != null)
+            if (datoCarrera == null)
             {
                 return;
             }
             Profesor director = buscaProfesor();
-            if(director!=null){
+            if(director == null){
                     return; 
             }
             if(quitar){
@@ -816,7 +816,6 @@ boolean verificacionCreditos = false;
     
    //GENERAR LISTA DE ESTUDIANTES MATRICULADOS A UN CURSO
     public void generarListaEstudiantesCurso() {
-
         Curso cursoAImprimir = buscaCurso();
         String listaEstudiantes = "";
         for (int i = 0; i < estudiantes.length; i++) {
@@ -829,11 +828,15 @@ boolean verificacionCreditos = false;
                             break;
                         }
                     }
-
                 }
             }
-            System.out.println(listaEstudiantes);
         }
+        if (listaEstudiantes.equals("")) {
+            System.out.println("No hay estudiantes registrados");
+        }else {
+        System.out.println(listaEstudiantes);
+        }
+        
     }
 
     //IMPRIMIR LISTA DE ESTUDIANTES,CURSOS,CARRERAS
